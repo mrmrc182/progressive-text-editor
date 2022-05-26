@@ -12,13 +12,12 @@ module.exports = () => {
     entry: {
       main: "./src/js/index.js",
       install: "./src/js/install.js",
-      editor: "./src/js/editor.js",
-      header: "./src/js/header.js"
     },
     output: {
       filename: "[name].bundle.js",
       path: path.resolve(__dirname, "dist"),
     },
+    target: "web",
     plugins: [
       new HtmlWebpackPlugin({
         template: "./index.html",
@@ -52,7 +51,6 @@ module.exports = () => {
         {
           test: /\.m?js$/,
           exclude: /node_modules/,
-          // We use babel-loader in order to use ES6.
           use: {
             loader: 'babel-loader',
             options: {
