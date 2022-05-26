@@ -1,4 +1,3 @@
-import { text } from 'express';
 import { openDB } from 'idb';
 
 const initdb = async () =>
@@ -18,7 +17,7 @@ export const putDb = async (content) => {
   const textDb = await openDB("jate", 1);
   const tx = textDb.transaction("jate", "readwrite");
   const store = tx.objectStore("jate");
-  const request = store.add(content);
+  const request = store.put({id: 1, content});
   const result = await request;
   console.log("Text saved", result);
 };
@@ -32,7 +31,7 @@ export const getDb = async () => {
   const request = store.getAll();
   const result = await request;
   console.log("result.value", result);
-  return result;
+  return result [result.length];
 };
 
 initdb();
